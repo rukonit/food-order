@@ -1,3 +1,4 @@
+import { act } from "@testing-library/react";
 import { useReducer } from "react";
 import CartContext from "./cart-context";
 
@@ -9,11 +10,33 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
     if (action.type === 'ADD') {
         //concat return a new arrary
-        const updatedItems = state.items.concat(action.item);
-
+              
         const updatedTotalAmount =  state.totalAmount + action.item.price * action.item.amount;
+        
+        const existingItemIndex = state.items.findIndex(item => item.id === action.item.id)
+        
+        const existingItem = state.items[existingItemIndex];
 
-        return {
+   
+        let updatedItems;
+
+        if(existingItem) {
+            const updatedItem = {
+                ...existingItem,
+                amount: existingItem.amount + action.item.amount
+
+            }
+
+            updatedItems = [...state.items];
+            updatedItems[existingItemIndex] = updatedItem
+        }
+        else {
+             updatedItems = state.items.concat(action.item)
+        }
+
+       
+
+       return {
             items: updatedItems,
             totalAmount: updatedTotalAmount
         }
