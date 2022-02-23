@@ -6,7 +6,7 @@ This react project is a simple demonstraton of online food ordering service. Bac
 ### How to Run
 
 Runs the app in the development mode.\
-Open https://book-management-front-end-rukon.netlify.app to view it in the browser.
+Open https://goofy-sinoussi-1fa3c1.netlify.app/ to view it in the browser.
 
 ### Technology Used
 1. ReactJS
